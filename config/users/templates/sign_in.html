@@ -1,0 +1,38 @@
+{% extends 'base_layout.html' %}
+
+{% block auth %}
+    <div class="columns is-centered" style="padding-top: 6.5%; text-decoration: none; font-size: 20px">
+        <div class="column is-4">
+            <div class="box has-background-info-light">
+                <form class="form  has-text-centered" method="post">
+                    <h1 class="title is-size-2 has-text-centered text-warning">Sign in</h1>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label">{{ field.label }}</label> <br>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <br>
+                    {% if form.errors %}
+                        <p style="font-size: 20px">Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                    <br>
+                    <button type="submit" style="padding-left: 20px" class="custom-btn btn-12">
+                        <span>Click!</span><span>Submit</span></button>
+                    <br>
+                    <p class="content mt-3 text-decoration-none" style="font-size: 25px; text-decoration: none">
+                        For create user
+                        <br>
+                        <br>
+                        <span>
+                           <a class="text-decoration-none" href="{% url 'users:sign_up' %}">Sign up here</a>
+                       </span>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
