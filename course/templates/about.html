@@ -1,0 +1,25 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+    <section>
+        <div class="columns" style=" padding:165px 0;">
+            <div class="column">
+                <img src="{{ teach.photo.url }}" style="width: 70%; height: auto" alt="">
+            </div>
+            <div class="column">
+                <h5 class="title text-warning">
+                    {{ teach.course }}
+                </h5>
+                <br><br>
+                <p class="subtitle" style="margin-top: -20px">
+                    {{ teach.first_name }} {{ teach.last_name }}
+                </p>
+                <p class="subtitle">
+                    {{ teach.text }}
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

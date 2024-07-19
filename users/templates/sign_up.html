@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+
+{% block auth %}
+    <div class="columns is-centered" style="padding-top: 4.7%; font-size: 20px">
+        <div class="column is-4">
+            <div class="box has-background-info-light">
+                <form class="form  has-text-centered" method="post">
+                    <h1 class="title is-size-2 has-text-centered text-warning">Sign up</h1>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <br>
+                    <br>
+                    <button type="submit" style="padding-left: 20px" src="{% url 'users:sign_in' %}" class="custom-btn btn-12"><span>Click!</span><span>Submit</span></button>
+                    <hr class="has-background-grey-lighter">
+                    <div class="is-size-5 has-text-grey-light">Already have an account?</div>
+                    <a href="{% url 'users:sign_in' %}" class="button is-ghost" style="font-size: 20px">
+                        Move to login page
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

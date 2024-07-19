@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GRAD SCHOOL</title>
+
+    <link rel="website icon" type="png" href="{% static 'logo3.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flex-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/lightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-grad-school.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.js' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.min.js' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.min.map' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.slim.js' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.slim.min.js' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jquery/jquery.slim.min.map' %}">
+</head>
+
+<body>
+<!--header-->
+<header class="main-header clearfix" role="header">
+    <div class="logo">
+        <a href="{% url 'course:index' %}"><em>Grad</em> School</a>
+    </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+        <ul class="main-menu text-decoration-none">
+            {% if is_succes == True %}
+                {# <li><a class="text-decoration-none" href="{% url 'course:index' %}">Back to main page</a></li>#}
+            {% else %}
+                <li><a class="text-decoration-none" href="#section1">Home</a></li>
+                <li><a class="text-decoration-none" href="#section4">Courses</a></li>
+                <li>
+                    <a class="text-decoration-none" href="#section9">Teachers</a>
+                </li>
+                <li>
+                    <a class="text-decoration-none" href="#section6">Map</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="text-decoration-none" href="{% url 'users:sign_out' %}">Sign out</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+{% block auth %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="margin-bottom: -30px">Call center: <span>+998999999999</span></p>
+                <p><i class="fa fa-copyright"></i> Copyright 2023 by Grad School
+
+                    | Design: aka Akmal</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/isotope.min.js' %}"></script>
+<script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+<script src="{% static 'assets/js/lightbox.js' %}"></script>
+<script src="{% static 'assets/js/tabs.js' %}"></script>
+<script src="{% static 'assets/js/video.js' %}"></script>
+<script src="{% static 'assets/js/slick-slider.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+        var
+            direction = section.replace(/#/, ''),
+            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                800);
+        } else {
+            $('body, html').scrollTop(reqSectionPos);
+        }
+
+    };
+
+    var checkSection = function checkSection() {
+        $('.section').each(function () {
+            var
+                $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var
+                    currentId = $this.data('section'),
+                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                reqLink.closest('li').addClass('active').siblings().removeClass('active');
+            }
+        });
+    };
+
+    $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+        if ($(e.target).hasClass('external')) {
+            return;
+        }
+        e.preventDefault();
+        $('#menu').removeClass('active');
+        showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+
+</body>
+
+</html>

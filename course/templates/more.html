@@ -1,0 +1,70 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section style="background: #0c1228">
+        <div class="columns" style="padding-top: 5%">
+            <div class="column">
+                <img src="{{ detail_course.image.url }}" alt="" style="width: 100%; height: auto">
+            </div>
+            <div class="column">
+                <h2 class="title text-warning">
+                    {{ detail_course.title }}
+                </h2>
+                <br><br>
+                <p class="subtitle" style="">
+                    {{ detail_course.description }}
+                </p>
+                <h4 class="small-title" style="font-weight: 600">
+                    <strong>
+                        {{ detail_course.price }} sum
+                    </strong>
+                </h4>
+            </div>
+        </div>
+
+        {#        {% if is_success %}#}
+        {#            <div class="notification text-warning" style="font-size: 30px; text-align: center">#}
+        {#                <button class="delete"></button>#}
+        {#                Ваша заявка принято Спасибо!#}
+        {#            </div>#}
+        {#        {% endif %}#}
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="text-center">
+                <h1 class="title is-1 text-warning">Sign up for our courses</h1>
+                <h2 class="subtitle text-white">
+                    Time to get better, sign up for our courses now
+                </h2>
+            </div>
+            <br><br><br>
+
+
+            {#            registration#}
+            <div class="columns is-variable is-8 is-vcentered">
+                <div class="column">
+                    <div class="box">
+                        <form method="post" class="form">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div class="field">
+                                    <label for="{{ field.id_for_label }}" class="label">{{ field.label }}</label><br>
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+                            <br>
+                            <button type="submit" style="padding: 9px 50px; font-size: 20px; color: white"
+                                    class="btn-warning btn"><strong>Send</strong></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="column">
+                    <img src="{% static 'assets/images/join.svg' %}" alt="Join illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
