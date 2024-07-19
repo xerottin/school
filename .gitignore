@@ -1,8 +1,10 @@
 .idea
 course/migrations
+course/__pycache__/
+users/__pycache__/
 users/migrations
 django
 *.DS_Store
 
 * .pyc
-__pycache__
+__pycache__/
