@@ -1,9 +1,9 @@
 .idea
 course/migrations
-
 users/migrations
 django
 __pycache__/
 *.py[cod]
 *.DS_Store
 ._*
+.db_store
