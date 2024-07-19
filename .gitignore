@@ -5,6 +5,6 @@ users/__pycache__/
 users/migrations
 django
 *.DS_Store
-
-* .pyc
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
